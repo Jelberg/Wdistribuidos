@@ -1,0 +1,20 @@
+<servers>
+  <Server id="1">
+    <ip>192.168.250.2</ip>
+    <port>47524</port>
+    <connected>0</connected>
+    <downloads>0</downloads>
+  </Server>
+  <Server id="2">
+    <ip>192.168.250.2</ip>
+    <port>47525</port>
+    <connected>0</connected>
+    <downloads>0</downloads>
+  </Server>
+  <Server id="3">
+    <ip>192.168.250.2</ip>
+    <port>47526</port>
+    <connected>0</connected>
+    <downloads>0</downloads>
+  </Server>
+</servers>

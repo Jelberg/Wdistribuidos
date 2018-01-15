@@ -1,0 +1,200 @@
+<book>
+  <Book id="1">
+    <bookname>Head First Javascript Programming</bookname>
+    <address>
+      <server id="1">
+        <ip>192.168.250.2</ip>
+        <port>47524</port>
+        <num_descargas>0</num_descargas>
+      </server>
+      <server id="2">
+        <ip>192.168.250.2</ip>
+        <port>47525</port>
+        <num_descargas>0</num_descargas>
+      </server>
+      <server id="3">
+        <ip>192.168.250.2</ip>
+        <port>47526</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="1">
+        <authorname>Eric Freeman</authorname>
+      </author>
+      <author id="2">
+        <authorname>Elisabeth Robson</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="1">
+        <genrename>Educativo</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="2">
+    <bookname>Los relojes</bookname>
+    <address>
+      <server id="1">
+        <ip>192.168.250.2</ip>
+        <port>47524</port>
+        <num_descargas>0</num_descargas>
+      </server>
+      <server id="2">
+        <ip>192.168.250.2</ip>
+        <port>47525</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="3">
+        <authorname>Agatha Christie</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="2">
+        <genrename>Novela Policiaca</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="3">
+    <bookname>El psicoanalista</bookname>
+    <address>
+      <server id="1">
+        <ip>192.168.250.2</ip>
+        <port>47524</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="4">
+        <authorname>John Katzenbach</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="3">
+        <genrename>Suspenso</genrename>
+      </genre>
+      <genre id="4">
+        <genrename>Thriller</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="4">
+    <bookname>El misterio de Marie Roget</bookname>
+    <address>
+      <server id="1">
+        <ip>192.168.250.2</ip>
+        <port>47524</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="3">
+        <authorname>Agatha Christie</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="2">
+        <genrename>Novela Policiaca</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="5">
+    <bookname>Ingenieria del Software. Un enfoque practico</bookname>
+    <address>
+      <server id="2">
+        <ip>192.168.250.2</ip>
+        <port>47525</port>
+        <num_descargas>0</num_descargas>
+      </server>
+      <server id="3">
+        <ip>192.168.250.2</ip>
+        <port>47526</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="5">
+        <authorname>Roger S. Pressman</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="1">
+        <genrename>Educativo</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="6">
+    <bookname>El simbolo perdido</bookname>
+    <address>
+      <server id="2">
+        <ip>192.168.250.2</ip>
+        <port>47525</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="6">
+        <authorname>Dan Brown</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="2">
+        <genrename>Novela Policiaca</genrename>
+      </genre>
+      <genre id="3">
+        <genrename>Suspenso</genrename>
+      </genre>
+      <genre id="5">
+        <genrename>Misterio</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="7">
+    <bookname>El caso de Charles Dexter Ward</bookname>
+    <address>
+      <server id="3">
+        <ip>192.168.250.2</ip>
+        <port>47526</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="7">
+        <authorname>H. P. Lovecraft</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="6">
+        <genrename>Fantasia</genrename>
+      </genre>
+      <genre id="7">
+        <genrename>Ciencia ficcion</genrename>
+      </genre>
+    </genres>
+  </Book>
+  <Book id="8">
+    <bookname>Rashomon y otros cuentos</bookname>
+    <address>
+      <server id="3">
+        <ip>192.168.250.2</ip>
+        <port>47526</port>
+        <num_descargas>0</num_descargas>
+      </server>
+    </address>
+    <authors>
+      <author id="8">
+        <authorname>Ryunosuke Akutagawa</authorname>
+      </author>
+    </authors>
+    <genres>
+      <genre id="5">
+        <genrename>Misterio</genrename>
+      </genre>
+      <genre id="2">
+        <genrename>Novela Policiaca</genrename>
+      </genre>
+    </genres>
+  </Book>
+</book>

@@ -1,0 +1,14 @@
+create table fingeranillo(
+id	serial,
+ip	varchar,
+hash    numeric,
+puerto  numeric,
+constraint pk_anillofinger primary key (id)
+)
+
+create table direccionrecursos(
+idr	serial,
+nombre	varchar,
+direccion varchar,
+constraint pk_direccion primary key (idr)
+)
