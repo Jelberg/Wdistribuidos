@@ -52,6 +52,7 @@ public class ManejadorAnillo extends Thread{
             /*Se abren los canales de comunicación
             de entrada y salida de datos
             */
+            System.out.println("AQUIII");
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));      
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
@@ -80,7 +81,7 @@ public class ManejadorAnillo extends Thread{
                     tab.add(tt);
                     ipnodo = in.readLine();
                     System.out.println(Global.subcadena(ipnodo));
-
+                    agregaRecurso();
                     ipnodohash = Global.subcadena(String.valueOf(ipnodo.hashCode()));
 
                    //Puero de nodo
@@ -164,7 +165,8 @@ public class ManejadorAnillo extends Thread{
         for (i =0 ; i< 3 ; i++){    
                 String query = "insert into todo (ip,hash,puerto,nombre,dir) values ('"
                 + ipnodo+"',"+ positivoIP(ipnodohash)
-                         +","+puerto+")";
+                         +","+puerto+",'"+tab.get(i).getNombre()+"','"+tab.get(i).getDireccion()+"')";
+                //Cambiar conexiox
                     Statement st = conn.createStatement();
                     ResultSet rs = st.executeQuery(query);
         }
