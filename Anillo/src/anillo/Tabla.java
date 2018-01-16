@@ -36,6 +36,13 @@ public class Tabla {
         this.puerto = puerto;
     }
 
+    public Tabla(String ip, int puerto) {
+        this.ip = ip;
+        this.puerto = puerto;
+    }
+    
+    
+
     
     
     public int getPuerto() {

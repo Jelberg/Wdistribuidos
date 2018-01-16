@@ -49,15 +49,63 @@ public class ConsolNodo extends Thread {
 
             System.out.println("1. Buscar Recurso");
             System.out.println("2. Estado de las solicitudes");
-            System.out.println("");
+            System.out.println("3. Mostrar nodos anteriores y posteriores");
+            System.out.println("0. Para salir");
             String opc = sc.nextLine();
             System.out.println("");
+            
+            //Para desloguearse
+            if(opc.equalsIgnoreCase("3"))
+            {
+                //PARA DESCONECTAR EL NODO DEL SERVIDOR
+                    //Conexion al nodo fantasma que se encuentra en al anillo
+                    Socket s;
+                try {
+                    
+                    s = new Socket("localhost", Global.ANILLO_PUERTO);                                                      
+                    //Se establece comunicacion con el servidor anillo
+                    BufferedReader in = new BufferedReader(
+                    new InputStreamReader(s.getInputStream()));
+                    PrintWriter out = new PrintWriter(s.getOutputStream(),true);
+                    
+                    out.println("AP");
+                    out.println(InetAddress.getLocalHost().getHostAddress());
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(ConsolNodo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+      
+            }
+            
+            //Para desloguearse
             if(opc.equalsIgnoreCase("0"))
             {
-               //PARA DESCONECTAR EL NODO DEL SERVIDOR
+                try {
+                    //PARA DESCONECTAR EL NODO DEL SERVIDOR
+                    //Conexion al nodo fantasma que se encuentra en al anillo
+                    Socket s = new Socket("localhost", Global.ANILLO_PUERTO);
+                                        
+                    //Se establece comunicacion con el servidor anillo
+                    BufferedReader in = new BufferedReader(
+                    new InputStreamReader(s.getInputStream()));
+                    PrintWriter out = new PrintWriter(s.getOutputStream(),true);
                 
+                    out.println("EXIT");
+                    //envia ip del que va a desloggear
+                    out.println(InetAddress.getLocalHost().getHostAddress());
+                    String lo = in.readLine();
+                    if (lo.equals("MUERTO")){
+                        System.out.println("..bye");
+                        break;
+                    }
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(ConsolNodo.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
+            
+            
             if(opc.equalsIgnoreCase("1"))
             {
                 System.out.println("Nombre del recurso: ");
@@ -71,11 +119,11 @@ public class ConsolNodo extends Thread {
                     nombrerecursohash = valorpositivo;
                     valor = mayorDeMenor(valorpositivo);
                     
-                    for (;;){
+            
                     //SE BUSCA ESE VALOR EN LAS TABLAS DE FINGER DEL FANTASMA
                     if (valor != 0){
                      System.out.println("..Buscando nodo que contenga el recurso..Recurso:"+nombrerecursohash);
-                  
+            for (;;){      
                         
                     //Conexion al nodo fantasma que se encuentra en al anillo
                     Socket s = new Socket("localhost", Global.ANILLO_PUERTO);
@@ -85,12 +133,13 @@ public class ConsolNodo extends Thread {
                     new InputStreamReader(s.getInputStream()));
                     PrintWriter out = new PrintWriter(s.getOutputStream(),true);
                                        
+                    //BR es para buscar en en servidor anilllo sobre el valor
                     out.println("BR");
                     out.println(valor);
                     
                     String result = in.readLine();
                     
-                    if (result.equals("NO")){
+                    if (result.equals("NO")){//Respuesta del anillo
                         String ip = in.readLine();
                         // Porwur lo que devuelve es el hash de la ip que cumple el mayor de nos menores 
                         nombrerecursohash = ip;
@@ -110,16 +159,39 @@ public class ConsolNodo extends Thread {
                                 out1.println("DR");
                                 out1.println(nombrerecursohash);
                                 
-                                //nuevo valor encontrado de la tabla hash, y puerto
+                                //nuevo valor encontrado de la tabla hash, y puerto o Rspuesta CHECK
                                 String val = in1.readLine();
                                 valor = Integer.parseInt(val);
-                               out1.close();
+                                //Posible respuesta del apuntaoor
+                                String recibe = in1.readLine();
+                              
+                                out1.close();
                                in1.close();
+                               
+                           if(val.equals("CHECK")){
+                               //la variable recibe tiene el apuntador en donde se encuentra
+                               //Conaultar tabla hash de servior para que devuelva puerto y direccion
+                               //Conexion al nodo fantasma que se encuentra en al anillo
+                                Socket s3 = new Socket("localhost", Global.ANILLO_PUERTO);
+                                //Se establece comunicacion con el servidor anillo
+                                BufferedReader in3 = new BufferedReader(
+                                new InputStreamReader(s.getInputStream()));
+                                PrintWriter out3 = new PrintWriter(s.getOutputStream(),true);
+                                
+                                out3.println("checkData"); //paraentrar en el case final el anillo
+                                out3.println(recibe);
+                                
+                                String a = in3.readLine();
+                                String b = in3.readLine();
+                                
+                                System.out.println("RESPUESTA: "+a);
+                                System.out.println("RESPUESTA: "+b);
+                                // aqui ya se tiene las direcciones para hacerla descarga 
+                                  
+                    }     
                     
                           } //Termina el if del valor mayor de los menores y quiere decir que en la tabla se encuentra apuntando al recurso 
-                          else if(result.equals("CHECK")){
-                          in1
-                    }
+                          
                     
                     } 
                         

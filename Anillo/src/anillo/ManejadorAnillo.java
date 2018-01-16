@@ -24,6 +24,7 @@ import java.util.logging.Logger;
  */
 public class ManejadorAnillo extends Thread{
     private Socket socket;
+    private Tabla infodata;
     private String ipnodo, ipnodohash;
     private String user;
     String puerto;
@@ -83,11 +84,26 @@ public class ManejadorAnillo extends Thread{
                     out.println(tabmn.getPuerto());
                    
                 }
-                //Significa que la tabla en la que se esta parado es la que apunta en donde se encuentra el recurso
-                else{
-                    out.println("OK");
-                    // ESTE `PASO NUNCA SE LLEGA A DAR 
+                else if (data.contains("checkData")){ //
+                    String Data = in.readLine(); // Este es la referencia que debe devolver os datos del usuario par aque pueda iniciar conexion y descargar archivo
+                    getDataNodo(Data);
+                    out.print(infodata.getIp());
+                    out.println(infodata.getPuerto());
                 }
+                else // If para eslogear el usuario del anillo
+                    if (data.contains("EXIT")){
+                        String logout = in.readLine();
+                        deleteNodo(logout);
+                        System.out.println("Usuario deslogeado: "+logout);
+                        out.println("MUERTO");
+                    }
+            }
+            else if (data.contains("AP")){
+               String ip = in.readLine();
+               //Anterior
+                out.println();
+                //Porterior
+                out.println();
             }
             
             
@@ -116,6 +132,61 @@ public class ManejadorAnillo extends Thread{
         } catch (Exception e) {
         
         }
+    }
+    
+    public void getDataNodo(String hash){
+        
+         String query = "select distinct ip, puerto from fingeranillo where hash="+hash;
+        try {
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+                String ip = rs.getString("ip");
+                int puerto = rs.getInt("puerto");
+             
+                infodata.setIp(ip);
+                infodata.setPuerto(puerto);
+                
+
+        } catch (Exception e) {
+        
+        }
+    }
+    
+    public void anteriornodo(String ipb){
+        String query = "select distinct ip from fingeranillo where ip='"+ipb+"'";
+        
+        
+    }
+    
+     public void deleteNodo(String ipd){
+        String query = "delete from fingeranillo where ip='"+ipd+"'";
+        try {
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            Tabla tab = null;
+            ArrayTab = null;         
+            int puesto = 0;
+            
+            while (rs.next()) {
+                String ip = rs.getString("ip");
+                String ihash = rs.getString("hash");
+                int puerto = rs.getInt("puerto");
+                puesto = puesto++;
+
+                tab = new Tabla(puesto,ip,ihash,puerto);
+                
+                //Lllena el array list con la informacion ordenada
+                ArrayTab.add(tab);
+            }
+
+        } catch (Exception e) {
+        
+        }
+    
     }
     
     public void ordenaNodos(){
