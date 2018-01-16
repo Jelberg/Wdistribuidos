@@ -44,7 +44,11 @@ public class ServidorNodo extends Thread{
      */
     public void correrServidor(ServidorNodo sn) throws IOException{
         /*Se conecta con servidor central*/
+        
+        System.out.println(dirIP);
+        System.out.println(puertocentral);
             this.s = new Socket(this.dirIP, this.puertocentral);
+            System.out.println("AQUIII2");
             this.ss = new ServerSocket(this.puertopropio);
             
             BufferedReader in = new BufferedReader(
@@ -52,6 +56,7 @@ public class ServidorNodo extends Thread{
             PrintWriter out = new PrintWriter(s.getOutputStream(),true);
             
             out.println("entrando");
+            
             array = Global.recurso();
             out.println(array.get(0).getNombre());
             out.println(array.get(0).getDireccion());

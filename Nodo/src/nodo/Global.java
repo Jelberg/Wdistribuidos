@@ -34,7 +34,7 @@ public class Global {
      * IP
      */
     
-    public static String IP = "localhost";
+    public static String IP = "localhost"; // Ip para conectar con el servidor
     
     /**
      * 
@@ -66,14 +66,14 @@ public class Global {
          ArrayList<Recurso> ret = new   ArrayList<Recurso>();
          //Modificarlo con los nombres y las direcciones de los recursos
             Recurso A = new Recurso();
-            A.setNombre(BD_URL);
-            A.setDireccion(IP);
+            A.setNombre("12");
+            A.setDireccion("13");
             Recurso B = new Recurso();
-            A.setNombre(BD_URL);
-            A.setDireccion(IP);
+            A.setNombre("21");
+            A.setDireccion("22");
             Recurso C = new Recurso();
-            A.setNombre(BD_URL);
-            A.setDireccion(IP);
+            A.setNombre("20");
+            A.setDireccion("19");
             ret.add(A);
             ret.add(B);
             ret.add(C);

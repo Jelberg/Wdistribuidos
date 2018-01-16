@@ -60,11 +60,13 @@ public class ManejadorAnillo extends Thread{
             String data = in.readLine();
             
             //if para actualizar tabla finger fantasma
+            
             if (data.contains("entrando")){
                     System.out.println("Usuario Conectado");
                     numUsu = numUsu++;
                     //Resibe ip
                     nom0=in.readLine();
+                    System.out.println(nom0);
                     dir0=in.readLine();
                     tt.setNombre(nom0);
                     tt.setDireccion(dir0);
