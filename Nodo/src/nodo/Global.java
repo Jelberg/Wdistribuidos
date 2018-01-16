@@ -5,6 +5,8 @@
  */
 package nodo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Elberg
@@ -53,4 +55,31 @@ public class Global {
      public static String subcadena(String str){
          return str.substring(str.length()-2, str.length());
      }
+     
+     
+     
+     
+     
+     
+     
+     public static ArrayList<Recurso> recurso (){
+         ArrayList<Recurso> ret = new   ArrayList<Recurso>();
+         //Modificarlo con los nombres y las direcciones de los recursos
+            Recurso A = new Recurso();
+            A.setNombre(BD_URL);
+            A.setDireccion(IP);
+            Recurso B = new Recurso();
+            A.setNombre(BD_URL);
+            A.setDireccion(IP);
+            Recurso C = new Recurso();
+            A.setNombre(BD_URL);
+            A.setDireccion(IP);
+            ret.add(A);
+            ret.add(B);
+            ret.add(C);
+            return ret;
+     }
+     
+    
+   
 }

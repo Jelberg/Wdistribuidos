@@ -12,3 +12,13 @@ nombre	varchar,
 direccion varchar,
 constraint pk_direccion primary key (idr)
 )
+
+create table todo(
+id	serial,
+ip	varchar,
+hash    numeric,
+puerto  numeric,
+nombre	varchar,
+dir	varchar,
+constraint pk_all primary key (id)
+)

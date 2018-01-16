@@ -20,9 +20,10 @@ import java.net.Socket;
  * @author Elberg
  */
 public class ServidorDescarga extends Thread {
-     
 
-    
+    public ServidorDescarga() {
+    }
+
       @Override
     public void run() {
             DataInputStream input;
@@ -31,11 +32,11 @@ public class ServidorDescarga extends Thread {
             int in;
             byte[] byteArray;
             //Fichero a transferir
-            final String filename = "c:\\test.pdf";
+            final String filename = "C:\\Users\\Elberg\\Desktop\\week8elberg.docx";
 
            try{
             final File localFile = new File( filename );
-            Socket client = new Socket("localhost", 5000);
+            Socket client = new Socket("192.168.250.9", 5000);
             bis = new BufferedInputStream(new FileInputStream(localFile));
             
             bos = new BufferedOutputStream(client.getOutputStream());

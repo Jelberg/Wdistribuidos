@@ -20,7 +20,8 @@ public class Nodo {
         // TODO code application logic here
         ServidorNodo sd = new ServidorNodo(1,"localhost",Global.ANILLO_PUERTO,Global.PUERTO);
         sd.correrServidor(sd);
-   
-    }
+        /*ServidorDescarga sd = new ServidorDescarga();
+        sd.start();
+    */}
     
 }

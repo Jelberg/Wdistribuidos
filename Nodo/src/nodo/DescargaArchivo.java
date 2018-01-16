@@ -47,7 +47,8 @@ public class DescargaArchivo extends Thread{
     BufferedInputStream bis;
     BufferedOutputStream bos;
 
-    
+    public DescargaArchivo() {
+    }
 
 
     public DescargaArchivo(Socket socket, ServidorManejadorNodo sd)

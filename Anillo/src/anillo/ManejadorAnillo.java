@@ -29,8 +29,11 @@ public class ManejadorAnillo extends Thread{
     private String user;
     private String puerto;
     private int numUsu;
+    private Recurso tt;
     private ArrayList<Tabla> ArrayTab = new ArrayList<Tabla>();
+    private ArrayList<Recurso> tab = new ArrayList<Recurso>();
     private Connection conn = Sql.getConInstance();
+    private String nom0,nom1,nom2,dir1,dir2,dir0;
 
     public ManejadorAnillo(Socket socket) {
         this.socket = socket;
@@ -60,6 +63,21 @@ public class ManejadorAnillo extends Thread{
                     System.out.println("Usuario Conectado");
                     numUsu = numUsu++;
                     //Resibe ip
+                    nom0=in.readLine();
+                    dir0=in.readLine();
+                    tt.setNombre(nom0);
+                    tt.setDireccion(dir0);
+                    tab.add(tt);
+                    nom1=in.readLine();
+                    dir1=in.readLine();
+                    tt.setNombre(nom1);
+                    tt.setDireccion(dir1);
+                    tab.add(tt);
+                    nom2=in.readLine();
+                    dir2=in.readLine();
+                    tt.setNombre(nom2);
+                    tt.setDireccion(dir2);
+                    tab.add(tt);
                     ipnodo = in.readLine();
                     System.out.println(Global.subcadena(ipnodo));
 
@@ -130,6 +148,26 @@ public class ManejadorAnillo extends Thread{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
 
+        } catch (Exception e) {
+        
+        }
+    }
+    
+    /**
+     * agrega recurso
+     */
+    public void agregaRecurso(){
+      
+        try {
+            int i;
+
+        for (i =0 ; i< 3 ; i++){    
+                String query = "insert into todo (ip,hash,puerto,nombre,dir) values ('"
+                + ipnodo+"',"+ positivoIP(ipnodohash)
+                         +","+puerto+")";
+                    Statement st = conn.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+        }
         } catch (Exception e) {
         
         }

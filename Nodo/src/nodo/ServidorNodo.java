@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,7 +24,7 @@ public class ServidorNodo extends Thread{
     
     private String dirIP;
     private String dirIpPropia;
-    
+    ArrayList<Recurso> array;
     private int id;
     private int puertocentral;
     private int puertopropio;
@@ -51,7 +52,13 @@ public class ServidorNodo extends Thread{
             PrintWriter out = new PrintWriter(s.getOutputStream(),true);
             
             out.println("entrando");
-            
+            array = Global.recurso();
+            out.println(array.get(0).getNombre());
+            out.println(array.get(0).getDireccion());
+            out.println(array.get(1).getNombre());
+            out.println(array.get(1).getDireccion());
+            out.println(array.get(2).getNombre());
+            out.println(array.get(2).getDireccion());
             //Obtiene el ip del servidor dnoda y lo manda
              out.println(InetAddress.getLocalHost().getHostAddress());
             //Obtengo el puerto del servidor nodo y lo manda
