@@ -47,23 +47,25 @@ public class ServidorNodo extends Thread{
         
         System.out.println(dirIP);
         System.out.println(puertocentral);
-            this.s = new Socket(this.dirIP, this.puertocentral);
-            System.out.println("AQUIII2");
+           
+        s = new Socket(this.dirIP, puertocentral );
+         
+            System.out.println(puertopropio);
             this.ss = new ServerSocket(this.puertopropio);
-            
+            System.out.println("AQUIII2");
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(s.getInputStream()));
             PrintWriter out = new PrintWriter(s.getOutputStream(),true);
             
             out.println("entrando");
             
-            array = Global.recurso();
+           /* array = Global.recurso();
             out.println(array.get(0).getNombre());
             out.println(array.get(0).getDireccion());
             out.println(array.get(1).getNombre());
             out.println(array.get(1).getDireccion());
             out.println(array.get(2).getNombre());
-            out.println(array.get(2).getDireccion());
+            out.println(array.get(2).getDireccion());*/
             //Obtiene el ip del servidor dnoda y lo manda
              out.println(InetAddress.getLocalHost().getHostAddress());
             //Obtengo el puerto del servidor nodo y lo manda

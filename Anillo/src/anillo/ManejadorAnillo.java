@@ -146,6 +146,7 @@ public class ManejadorAnillo extends Thread{
         
          String query = "insert into fingeranillo (ip,hash,puerto) values ('"+ ipnodo+"',"+ positivoIP(ipnodohash)
                  +","+puerto+")";
+         System.out.println(query);
         try {
 
             Statement st = conn.createStatement();

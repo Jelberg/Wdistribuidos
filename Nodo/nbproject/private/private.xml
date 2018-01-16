@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+
+        <group>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/ServidorManejadorNodo.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/Global.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/ServidorNodo.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/Recurso.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/ServidorDescarga.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/Nodo.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Nodo/src/nodo/ConsolNodo.java</file>
+        </group>
+
     </open-files>
 </project-private>

@@ -143,6 +143,7 @@ public class ConsolNodo extends Thread {
                     out.println(valor);
                     
                     String result = in.readLine();
+                    System.out.println("Este es el result: "+result);
                     
                     if (result.equals("NO")){//Respuesta del anillo
                         String ip = in.readLine(); //En hash
