@@ -34,7 +34,7 @@ public class Global {
      * IP
      */
     
-    public static String IP = "localhost";
+    public static String IP = "192.168.250.13"; // Ip para conectar con el servidor
     
     /**
      * 

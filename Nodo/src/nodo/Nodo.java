@@ -18,7 +18,7 @@ public class Nodo {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        ServidorNodo sd = new ServidorNodo(1,"localhost",Global.ANILLO_PUERTO,Global.PUERTO);
+        ServidorNodo sd = new ServidorNodo(1,Global.IP,Global.ANILLO_PUERTO,Global.PUERTO);
         sd.correrServidor(sd);
         /*ServidorDescarga sd = new ServidorDescarga();
         sd.start();
