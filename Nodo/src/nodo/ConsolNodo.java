@@ -62,7 +62,7 @@ public class ConsolNodo extends Thread {
                     Socket s;
                 try {
                     
-                    s = new Socket("localhost", Global.ANILLO_PUERTO);                                                      
+                    s = new Socket(Global.IP, Global.ANILLO_PUERTO);                                                      
                     //Se establece comunicacion con el servidor anillo
                     BufferedReader in = new BufferedReader(
                     new InputStreamReader(s.getInputStream()));
@@ -83,7 +83,7 @@ public class ConsolNodo extends Thread {
                 try {
                     //PARA DESCONECTAR EL NODO DEL SERVIDOR
                     //Conexion al nodo fantasma que se encuentra en al anillo
-                    Socket s = new Socket("localhost", Global.ANILLO_PUERTO);
+                    Socket s = new Socket(Global.IP, Global.ANILLO_PUERTO);
                                         
                     //Se establece comunicacion con el servidor anillo
                     BufferedReader in = new BufferedReader(
@@ -92,12 +92,12 @@ public class ConsolNodo extends Thread {
                 
                     out.println("EXIT");
                     //envia ip del que va a desloggear
-                    out.println(InetAddress.getLocalHost().getHostAddress());
-                    String lo = in.readLine();
-                    if (lo.equals("MUERTO")){
+                    out.println(Global.subcadena(InetAddress.getLocalHost().getHostAddress()));
+                    
+               
                         System.out.println("..bye");
                         break;
-                    }
+                
                     
                 } catch (IOException ex) {
                     Logger.getLogger(ConsolNodo.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,12 +113,14 @@ public class ConsolNodo extends Thread {
                 
                 try {
                     calculoTablaFinger();
+                    op = Global.subcadena(op);
                     int hash= op.hashCode();
                     String valorpositivo = positivoIP(hash);
                     //valor positivo del recurso
                     nombrerecursohash = valorpositivo;
+                    System.out.println("Valor que se pasa para calcular mayor de los menores: "+valorpositivo);
                     valor = mayorDeMenor(valorpositivo);
-                    
+                    System.out.println("M de m "+valor);
             
                     //SE BUSCA ESE VALOR EN LAS TABLAS DE FINGER DEL FANTASMA
                     if (valor != 0){
@@ -126,7 +128,7 @@ public class ConsolNodo extends Thread {
             for (;;){      
                         
                     //Conexion al nodo fantasma que se encuentra en al anillo
-                    Socket s = new Socket("localhost", Global.ANILLO_PUERTO);
+                    Socket s = new Socket(Global.IP, Global.ANILLO_PUERTO);
                     
                     //Se establece comunicacion con el servidor anillo
                     BufferedReader in = new BufferedReader(
@@ -150,8 +152,9 @@ public class ConsolNodo extends Thread {
                         in.close();
                         out.close();
                         
-                   //Aqui forma la coneccion con el siguiente nodo  
-                                Socket s1 = new Socket("localhost", intpu );
+                   //Aqui forma la coneccion con el siguiente nodo 
+                   //TODO: revisar la ip a la que se conecta el socket s1
+                                Socket s1 = new Socket(Global.IP, intpu );
                                 BufferedReader in1 = new BufferedReader(
                                 new InputStreamReader(s1.getInputStream()));
                                 PrintWriter out1 = new PrintWriter(s1.getOutputStream(),true);  
@@ -172,7 +175,7 @@ public class ConsolNodo extends Thread {
                                //la variable recibe tiene el apuntador en donde se encuentra
                                //Conaultar tabla hash de servior para que devuelva puerto y direccion
                                //Conexion al nodo fantasma que se encuentra en al anillo
-                                Socket s3 = new Socket("localhost", Global.ANILLO_PUERTO);
+                                Socket s3 = new Socket(Global.IP, Global.ANILLO_PUERTO);
                                 //Se establece comunicacion con el servidor anillo
                                 BufferedReader in3 = new BufferedReader(
                                 new InputStreamReader(s.getInputStream()));
@@ -214,12 +217,12 @@ public class ConsolNodo extends Thread {
     public void calculoTablaFinger() throws UnknownHostException{
        int i = 1;
        int val =0;
-       String ip = InetAddress.getLocalHost().getHostAddress();
+       String ip = Global.subcadena(InetAddress.getLocalHost().getHostAddress());
        System.out.println("Esta es la ip pata tabla finger: "+ip);
        int haship = ip.hashCode();
        System.out.println("Esta es la ip con hash: "+haship);
        String hashpositivo = Global.positivoIP(haship);
-       System.out.println("Valor positivo del hash "+hashpositivo);
+      // System.out.println("Valor positivo del hash "+hashpositivo);
        int hash = Integer.parseInt(hashpositivo);
        
        Finger fing = new Finger();
@@ -251,8 +254,9 @@ public class ConsolNodo extends Thread {
      */
     public int mayorDeMenor(String hash){
         int hashInt = Integer.parseInt(hash);
-        for(int i=0;i < finger.size() ;i++){
-            if ((finger.get(i).getHaship() < hashInt) && (hashInt < finger.get(i+1).getHaship()) )
+        for(int i=0;i < finger.size()-1 ;i++){
+            if ((i == 4) && (finger.get(i).getHaship() < hashInt)) return finger.get(i).getHaship();  
+            else if ((finger.get(i).getHaship() < hashInt) && (hashInt < finger.get(i+1).getHaship()) )
                 return finger.get(i).getHaship();
         }
         return 0;

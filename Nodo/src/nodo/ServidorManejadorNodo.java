@@ -51,7 +51,7 @@ private ArrayList<Finger> finger = new ArrayList<Finger>();
              
              if (valor != 0){
                   //Conexion al nodo fantasma que se encuentra en al anillo
-                    Socket s = new Socket("localhost", Global.ANILLO_PUERTO);
+                    Socket s = new Socket(Global.IP, Global.ANILLO_PUERTO);
                     
                     //Se establece comunicacion con el servidor anillo
                     BufferedReader in = new BufferedReader(
@@ -83,8 +83,9 @@ private ArrayList<Finger> finger = new ArrayList<Finger>();
              else {
              // quiere decir que en finger que es un array list al la posicion 0, esta el apuntador del documento 
                 Finger fing = finger.get(0);
-                out1.println("CKECK");
                 out1.println(fing.haship);
+                out1.println("CKECK");
+                
                 
              }
          }
@@ -100,17 +101,18 @@ private ArrayList<Finger> finger = new ArrayList<Finger>();
     
     /**
      * METODO PARA CALCULAR TABLA DE FINGER DE CADA NODO
+     * @throws java.net.UnknownHostException
      */
     public void calculoTablaFinger() throws UnknownHostException{
        int i = 0;
-       
-       String ip = InetAddress.getLocalHost().getHostAddress();
+        int val =0;
+       String ip = Global.subcadena(InetAddress.getLocalHost().getHostAddress());
        int haship = ip.hashCode();
        String hashpositivo = Global.positivoIP(haship);
        int hash = Integer.parseInt(hashpositivo);
        
        Finger fing = new Finger();
-       fing.setPos(6);
+       fing.setPos(5);
        fing.setHaship(hash+1); 
        
        
@@ -118,8 +120,11 @@ private ArrayList<Finger> finger = new ArrayList<Finger>();
            if (j == 6) finger.add(fing);
            else 
            {
-                int val = (int) Math.pow(hash,i);
-                System.out.println("Tabla finger "+val);
+                //Formula para definir los apuntadores de Chord
+ 
+                   val = (int) (hash+Math.pow(2, j));
+             
+                System.out.println("Tabla finger Servidor : "+val);
                 i=i++;
                 Finger fin = new Finger(i,val);
                 finger.add(fin);

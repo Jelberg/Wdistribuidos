@@ -42,4 +42,8 @@ public class Global {
        if (i < 0) i = i*(-1);
      return String.valueOf(i);
     }
+    
+    public static String subcadena(String str){
+         return str.substring(str.length()-2, str.length());
+     }
 }

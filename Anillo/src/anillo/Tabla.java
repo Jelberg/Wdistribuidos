@@ -40,6 +40,9 @@ public class Tabla {
         this.ip = ip;
         this.puerto = puerto;
     }
+
+    public Tabla() {
+      }
     
     
 

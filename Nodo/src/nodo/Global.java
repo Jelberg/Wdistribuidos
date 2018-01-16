@@ -28,6 +28,11 @@ public class Global {
     public static int ANILLO_PUERTO = 44444;
     public static int PUERTO = 47524;
     
+    /**
+     * IP
+     */
+    
+    public static String IP = "localhost";
     
     /**
      * 
@@ -40,4 +45,12 @@ public class Global {
        if (i < 0) i = i*(-1);
      return String.valueOf(i);
     }
+    
+    /**
+     * Funcion que devuelve los ultimos 3 caracteres de un String
+     */
+
+     public static String subcadena(String str){
+         return str.substring(str.length()-2, str.length());
+     }
 }

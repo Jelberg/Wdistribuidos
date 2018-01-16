@@ -27,9 +27,9 @@ public class ManejadorAnillo extends Thread{
     private Tabla infodata;
     private String ipnodo, ipnodohash;
     private String user;
-    String puerto;
+    private String puerto;
     private int numUsu;
-    ArrayList<Tabla> ArrayTab = new ArrayList<Tabla>();
+    private ArrayList<Tabla> ArrayTab = new ArrayList<Tabla>();
     private Connection conn = Sql.getConInstance();
 
     public ManejadorAnillo(Socket socket) {
@@ -57,17 +57,18 @@ public class ManejadorAnillo extends Thread{
             
             //if para actualizar tabla finger fantasma
             if (data.contains("entrando")){
-            System.out.println("Usuario Conectado");
-            numUsu = numUsu++;
-            //Resibe ip
-            ipnodo = in.readLine();
-            System.out.println(ipnodo);
-            ipnodohash = String.valueOf(ipnodo.hashCode());
-          
-           //Puero de nodo
-             puerto = in.readLine();       
-            addTablaFinger();
-            
+                    System.out.println("Usuario Conectado");
+                    numUsu = numUsu++;
+                    //Resibe ip
+                    ipnodo = in.readLine();
+                    System.out.println(Global.subcadena(ipnodo));
+
+                    ipnodohash = Global.subcadena(String.valueOf(ipnodo.hashCode()));
+
+                   //Puero de nodo
+                     puerto = in.readLine();       
+                    addTablaFinger();
+
             }
             else
             //If para la busqueda de recursos
@@ -80,6 +81,8 @@ public class ManejadorAnillo extends Thread{
                 if (tabmn != null){
                     //Devuelve ip y puerto del siguiente nodo
                     out.println("NO");
+                   // System.out.println(tabmn.getIhash());
+                   // System.out.println(tabmn.getPuerto());
                     out.println(tabmn.getIhash());
                     out.println(tabmn.getPuerto());
                    
@@ -95,7 +98,7 @@ public class ManejadorAnillo extends Thread{
                         String logout = in.readLine();
                         deleteNodo(logout);
                         System.out.println("Usuario deslogeado: "+logout);
-                        out.println("MUERTO");
+       
                     }
             }
             else if (data.contains("AP")){
@@ -196,21 +199,25 @@ public class ManejadorAnillo extends Thread{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             
-            Tabla tab = null;
-            ArrayTab = null;         
+            Tabla tab = new Tabla();     
             int puesto = 0;
             
             while (rs.next()) {
+                
                 String ip = rs.getString("ip");
                 String ihash = rs.getString("hash");
                 int puerto = rs.getInt("puerto");
                 puesto = puesto++;
-
-                tab = new Tabla(puesto,ip,ihash,puerto);
-                
+                tab.setIp(ip);
+                tab.setIhash(ihash);
+                tab.setPuerto(puerto);
+                  
                 //Lllena el array list con la informacion ordenada
                 ArrayTab.add(tab);
+               // System.out.println("ip consulta " + ArrayTab.get(0).getIp()); 
             }
+            
+           // System.out.println("hash del array list de la consulta ");
 
         } catch (Exception e) {
         
@@ -225,10 +232,13 @@ public class ManejadorAnillo extends Thread{
      */
     public Tabla mayorDeMenor(String hash){
         int hashInt = Integer.parseInt(hash);
-        System.out.println("mayor menor de fantasma: "+hashInt);
+        System.out.println("mayor de los menores del nodo fantasma: "+hashInt);
+       // System.out.println("Tamaño del array "+ArrayTab.size());
         for(int i=0;i < ArrayTab.size() ;i++){
+            if (ArrayTab.size() == 1 && Integer.parseInt(ArrayTab.get(i).getIhash()) < hashInt) 
+                return ArrayTab.get(i);
             // Este if es para cundo llegue al final de la tabla y el valor sea menor a la llave que se tiene
-            if (i == ArrayTab.size() && Integer.parseInt(ArrayTab.get(i).getIhash()) < hashInt) 
+            else if (i == ArrayTab.size() && Integer.parseInt(ArrayTab.get(i).getIhash()) < hashInt) 
                 return ArrayTab.get(i);
             else if ((Integer.parseInt(ArrayTab.get(i).getIhash()) < hashInt) && 
                     (hashInt < Integer.parseInt(ArrayTab.get(i+1).getIhash())) )
