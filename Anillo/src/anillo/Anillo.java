@@ -15,7 +15,7 @@ public class Anillo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ServidorAnillo s = new ServidorAnillo(44444);
+        ServidorAnillo s = new ServidorAnillo(Global.PUERTO);
         s.correrServidor();
     }
     

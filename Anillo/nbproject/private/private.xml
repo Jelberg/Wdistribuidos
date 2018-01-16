@@ -5,8 +5,9 @@
         <group>
             <file>file:/home/elberg/Escritorio/Wdistribuidos/Anillo/src/anillo/Tabla.java</file>
             <file>file:/home/elberg/Escritorio/Wdistribuidos/Anillo/src/anillo/Anillo.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Anillo/src/anillo/Global.java</file>
             <file>file:/home/elberg/Escritorio/Wdistribuidos/Anillo/src/anillo/ManejadorAnillo.java</file>
-            <file>file:/home/elberg/Escritorio/Wdistribuidos/Anillo/src/anillo/ServidorAnillo.java</file>
+            <file>file:/home/elberg/Escritorio/Wdistribuidos/Anillo/src/anillo/Sql.java</file>
         </group>
     </open-files>
 </project-private>

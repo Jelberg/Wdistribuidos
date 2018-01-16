@@ -20,21 +20,21 @@ public class Global {
      * Global para conexion sql
      */
     public static String BD_USER = "postgres";
-    public static String BD_PASSWORD = "123";
+    public static String BD_PASSWORD = "postgres";
     public static String BD_URL = "jdbc:postgresql://localhost/postgres";
     public static String BD_CLASS_FOR_NAME = "org.postgresql.Driver";
     
     /**
      * Puertos
      */
-    public static int ANILLO_PUERTO = 44444;
-    public static int PUERTO = 47524;
+    public static int ANILLO_PUERTO = 32233;
+    public static int PUERTO = 56565;
     
     /**
      * IP
      */
     
-    public static String IP = "192.168.250.13"; // Ip para conectar con el servidor
+    public static String IP = "192.168.4.19"; // Ip para conectar con el servidor
     
     /**
      * 
