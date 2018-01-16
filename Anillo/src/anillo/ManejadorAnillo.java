@@ -81,11 +81,9 @@ public class ManejadorAnillo extends Thread{
                 if (tabmn != null){
                     //Devuelve ip y puerto del siguiente nodo
                     out.println("NO");
-                   // System.out.println(tabmn.getIhash());
-                   // System.out.println(tabmn.getPuerto());
                     out.println(tabmn.getIhash());
                     out.println(tabmn.getPuerto());
-                   
+                  
                 }
                 else if (data.contains("checkData")){ //
                     String Data = in.readLine(); // Este es la referencia que debe devolver os datos del usuario par aque pueda iniciar conexion y descargar archivo

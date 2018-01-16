@@ -6,15 +6,22 @@
 package nodo;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -29,16 +36,24 @@ public class DescargaArchivo extends Thread{
     private Connection conn = Sql.getConInstance();
     Recurso tab = new Recurso(); 
     String dato ;
-    
+    private Socket sd;
+    private String mensaje;
     private Socket socket;
-    private ServidorManejadorNodo sd;
+    private FileOutputStream fos;
+    private ServidorManejadorNodo sdp;
+     ServerSocket server;
+    Socket connection;
+    DataOutputStream output;
+    BufferedInputStream bis;
+    BufferedOutputStream bos;
+
     
 
 
     public DescargaArchivo(Socket socket, ServidorManejadorNodo sd)
     {
         this.socket = socket;
-        this.sd = sd;
+        this.sdp = sd;
     }
     
     /**
@@ -69,11 +84,49 @@ public class DescargaArchivo extends Thread{
     
     }
 
+ 
     @Override
     public void run() {
-        
-    }
-    
+
+                byte[] receivedData;
+                 int in;
+                 String file;
+
+                try{
+                 //Servidor Socket en el puerto 5000
+                 server = new ServerSocket( 5000 );
+                 
+                 while ( true ) {
+                     
+                 //Aceptar conexiones
+                 connection = server.accept();
+                 //Buffer de 1024 bytes
+                 
+                 receivedData = new byte[1024];
+                 bis = new BufferedInputStream(connection.getInputStream());
+                 DataInputStream dis=new DataInputStream(connection.getInputStream());
+                 
+                 //Recibimos el nombre del fichero
+                 file = dis.readUTF();
+                 file = file.substring(file.indexOf('\\')+1,file.length());
+                 
+                 //Para guardar fichero recibido
+                 bos = new BufferedOutputStream(new FileOutputStream(file));
+                 
+                 while ((in = bis.read(receivedData)) != -1){
+                     
+                 bos.write(receivedData,0,in);
+                 }
+                 
+                 bos.close();
+                 dis.close();
+                 }
+                 
+                 }catch (Exception e ) {
+                     
+                 System.err.println(e);
+                 }
+                 }
     
     
 }

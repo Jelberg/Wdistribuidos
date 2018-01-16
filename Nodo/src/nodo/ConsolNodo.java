@@ -26,6 +26,7 @@ import static nodo.Global.positivoIP;
 public class ConsolNodo extends Thread {
     private int i;
     private ServidorNodo sd;
+    int intpu;
     public static String nombrerecursohash;
     private ArrayList<Finger> finger = new ArrayList<Finger>();
 
@@ -125,7 +126,9 @@ public class ConsolNodo extends Thread {
                     //SE BUSCA ESE VALOR EN LAS TABLAS DE FINGER DEL FANTASMA
                     if (valor != 0){
                      System.out.println("..Buscando nodo que contenga el recurso..Recurso:"+nombrerecursohash);
-            for (;;){      
+           
+                
+                for (;;){      
                         
                     //Conexion al nodo fantasma que se encuentra en al anillo
                     Socket s = new Socket(Global.IP, Global.ANILLO_PUERTO);
@@ -142,34 +145,34 @@ public class ConsolNodo extends Thread {
                     String result = in.readLine();
                     
                     if (result.equals("NO")){//Respuesta del anillo
-                        String ip = in.readLine();
+                        String ip = in.readLine(); //En hash
                         // Porwur lo que devuelve es el hash de la ip que cumple el mayor de nos menores 
                         nombrerecursohash = ip;
                         String puerto = in.readLine();
                         System.out.println("Buscando recurso en el nodo con el puerto:"+puerto);
-                        int intpu = Integer.parseInt(puerto);
+                        intpu = Integer.parseInt(puerto);
                         s.close();
                         in.close();
                         out.close();
-                        
+                    }
                    //Aqui forma la coneccion con el siguiente nodo 
                    //TODO: revisar la ip a la que se conecta el socket s1
-                                Socket s1 = new Socket(Global.IP, intpu );
-                                BufferedReader in1 = new BufferedReader(
-                                new InputStreamReader(s1.getInputStream()));
-                                PrintWriter out1 = new PrintWriter(s1.getOutputStream(),true);  
+                        Socket s1 = new Socket(Global.IP, intpu );
+                        BufferedReader in1 = new BufferedReader(
+                        new InputStreamReader(s1.getInputStream()));
+                        PrintWriter out1 = new PrintWriter(s1.getOutputStream(),true);  
                                 
-                                out1.println("DR");
-                                out1.println(nombrerecursohash);
+                        out1.println("DR");
+                        out1.println(nombrerecursohash);
                                 
-                                //nuevo valor encontrado de la tabla hash, y puerto o Rspuesta CHECK
-                                String val = in1.readLine();
-                                valor = Integer.parseInt(val);
-                                //Posible respuesta del apuntaoor
-                                String recibe = in1.readLine();
+                        //nuevo valor encontrado de la tabla hash, y puerto o Rspuesta CHECK
+                        String val = in1.readLine();
+                        valor = Integer.parseInt(val);
+                        //Posible respuesta del apuntaoor
+                        String recibe = in1.readLine();
                               
-                                out1.close();
-                               in1.close();
+                        out1.close();
+                        in1.close();
                                
                            if(val.equals("CHECK")){
                                //la variable recibe tiene el apuntador en donde se encuentra
@@ -191,7 +194,7 @@ public class ConsolNodo extends Thread {
                                 System.out.println("RESPUESTA: "+b);
                                 // aqui ya se tiene las direcciones para hacerla descarga 
                                   
-                    }     
+                       
                     
                           } //Termina el if del valor mayor de los menores y quiere decir que en la tabla se encuentra apuntando al recurso 
                           
